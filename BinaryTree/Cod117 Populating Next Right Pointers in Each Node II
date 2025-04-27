@@ -1,0 +1,27 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        tree = []
+        def get(rt,level):
+            if not rt:
+                return
+            
+            if len(tree)<=level:
+                tree.append([])
+            tree[level].append(rt)
+            if len(tree[level])>1:
+                tree[level][-2].next = tree[level][-1]
+            
+            get(rt.left, level+1)
+            get(rt.right, level+1)
+        get(root,0)
+        return root
