@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        swap = []
+        lis = []
+        def get(rt):
+            if rt:
+                get(rt.left)
+                lis.append(rt)
+                if len(lis)<=1:
+                    pass
+                elif lis[-2].val > lis[-1].val:
+                    if not swap:
+                        swap.append(lis[-2])
+                        swap.append(lis[-1])
+                    else:
+                        swap[-1] = (lis[-1])
+                get(rt.right)
+        get(root)
+        if len(swap)==2:
+            swap[-2].val = swap[-2].val ^ swap[-1].val
+            swap[-1].val = swap[-2].val ^ swap[-1].val
+            swap[-2].val = swap[-2].val ^ swap[-1].val
+
+        
