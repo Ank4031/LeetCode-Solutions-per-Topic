@@ -1,0 +1,14 @@
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        i=-1
+        lis = [0]*(len(triangle[i])+1)
+        while i >= -len(triangle):
+            newLis=[]
+            for j in range(len(lis)-1):
+                newLis.append(min(lis[j],lis[j+1]))
+            for j in range(len(triangle[i])):
+                newLis[j] = newLis[j]+triangle[i][j]
+            lis = newLis
+            i-=1
+        return lis[0]
+            
