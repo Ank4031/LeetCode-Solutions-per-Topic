@@ -1,0 +1,33 @@
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        row = len(board)
+        column = len(board[0])
+        def get(r,c):
+            if r<0 or c<0 or r==row or c==column or board[r][c]!='O':
+                return
+            board[r][c]='T'
+            get(r+1,c)
+            get(r,c+1)
+            get(r-1,c)
+            get(r,c-1)
+        
+        for i in range(row):
+            for j in range(column):
+                if (board[i][j] == 'O') and (i in [0,row-1] or j in [0,column-1]):
+                    get(i,j)
+
+        for i in range(row):
+            for j in range(column):
+                if board[i][j] == 'O':
+                    board[i][j] = 'X'
+        
+        for i in range(row):
+            for j in range(column):
+                if board[i][j] == 'T':
+                    board[i][j] = 'O'
+
+
+                    
+
+
+        
