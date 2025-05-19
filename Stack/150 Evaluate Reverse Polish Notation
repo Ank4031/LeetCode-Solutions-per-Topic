@@ -1,0 +1,28 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        i=0
+        while len(tokens)>1:
+            if tokens[i] not in ["-","+","/","*"]:
+                i+=1
+            else:
+                if tokens[i]=="+":
+                    x = eval(tokens[i-2] + tokens[i] + tokens[i-1])
+                    tokens[i-2] = str(x)
+                elif tokens[i]=="-":
+                    x = eval(tokens[i-2] + tokens[i] + tokens[i-1])
+                    tokens[i-2] = str(x)
+                elif tokens[i]=="/":
+                    x = eval(tokens[i-2] + tokens[i] + tokens[i-1])
+                    if x < 0 :
+                        x = math.ceil(x)
+                    else:
+                        x = math.floor(x)
+                    tokens[i-2] = str(x)
+                elif tokens[i]=="*":
+                    x = eval(tokens[i-2] + tokens[i] + tokens[i-1])
+                    tokens[i-2] = str(x)
+                tokens.pop(i)
+                tokens.pop(i-1)
+                i-=1
+        return int(tokens[0])
+
