@@ -1,0 +1,39 @@
+class Solution:
+    def fractionToDecimal(self, numerator: int, denominator: int) -> str:
+        if numerator == 0:
+            return "0"
+        neg = False
+        if numerator < 0:
+            numerator = abs(numerator)
+            neg = not neg
+        if denominator < 0:
+            denominator = abs(denominator)
+            neg = not neg
+        res = numerator//denominator
+        remainder = numerator%denominator
+        if remainder == 0:
+            return str(res) if not neg else "-" + str(res)
+        else:
+            dic = {}
+            lastRemainder = None
+            while remainder*10 not in dic and remainder!=0:
+                remainder *= 10
+                x = remainder//denominator
+                newRemainder = remainder%denominator
+                if lastRemainder:
+                    dic[remainder] = dic[lastRemainder] + str(x)
+                else:
+                    dic[remainder] = str(x)
+                lastRemainder = remainder
+                remainder = newRemainder
+            if remainder == 0:
+                return str(res) + "." + dic[lastRemainder] if not neg else "-" + str(res) + "." + dic[lastRemainder]
+            else:
+                keyLis = list(dic.keys())
+                for i in range(len(keyLis)):
+                    if keyLis[i] == remainder*10:
+                        if i==0:
+                            return str(res) + ".(" + dic[keyLis[-1]] + ")" if not neg else "-" + str(res) + ".(" + dic[keyLis[-1]] + ")"
+                        else:
+                            return str(res) + "." + dic[keyLis[-1]][:i] + "(" + dic[keyLis[-1]][i:] + ")" if not neg else "-" + str(res) + "." + dic[keyLis[-1]][:i] + "(" + dic[keyLis[-1]][i:] + ")"
+                
