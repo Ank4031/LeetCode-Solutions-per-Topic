@@ -1,0 +1,25 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        x,y = 0,0
+        cx,cy = 0,0
+        for i in range(len(nums)):
+            if i==0:
+                x=nums[i]
+                cx=1
+                cy=0
+            else:
+                if cx==0:
+                    y=x
+                    x+=nums[i]
+                    cx=1
+                    cy=0
+                else:
+                    y+=nums[i]
+                    if y>x:
+                        y,x = x,y
+                        cx=1
+                        cy=0
+                    else:
+                        cy=1
+                        cx=0
+        return x
