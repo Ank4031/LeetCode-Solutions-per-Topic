@@ -1,0 +1,27 @@
+import math
+class Solution:
+    def rangeBitwiseAnd(self, left: int, right: int) -> int:
+        if left == right:
+            return left
+        a = math.log(right,2) if right > 0 else 0
+        b = math.log(left,2) if left > 0 else 0
+        if (int(a)-int(b)) >= 1 or left == 0:
+            return 0
+        elif int(b) == b:
+            return int(2**b)
+        a = bin(left)[2:]
+        b = bin(right)[2:]
+        res = ''
+        i=0
+        while i < len(b):
+            if a[i]==b[i]:
+                res += a[i]
+            else:
+                break
+            i+=1
+        res += "0"*(len(b)-i)
+        return int(res,2)
+
+
+        
+        
