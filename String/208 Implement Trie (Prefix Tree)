@@ -1,0 +1,27 @@
+class Trie:
+
+    def __init__(self):
+        self.stringSet = set()
+
+    def insert(self, word: str) -> None:
+        self.stringSet.add(word)
+
+    def search(self, word: str) -> bool:
+        if word in self.stringSet:
+            return True
+        else:
+            return False
+
+    def startsWith(self, prefix: str) -> bool:
+        for i in self.stringSet:
+            if prefix == i[:len(prefix)]:
+                return True
+        else:
+            return False
+
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
