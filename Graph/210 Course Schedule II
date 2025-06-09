@@ -1,0 +1,35 @@
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        result = []
+        data = { i:[] for i in range(numCourses)}
+        for p,q in prerequisites:
+            data[p].append(q)
+        result_set = set()
+        visited = set()
+        def get(a):
+            if data[a] == []:
+                return True 
+            if a in visited:
+                return False
+            visited.add(a)
+            for j in data[a]:
+                if not get(j):
+                    return False
+            for j in data[a]:
+                if j not in result_set:
+                    result.append(j)
+                    result_set.add(j)
+            visited.remove(a)
+            return True
+        
+        print(data)
+        for i in data:
+            if get(i):
+                if i not in result_set:
+                    result.append(i)
+                    result_set.add(i)
+            else:
+                return []
+
+        return result
+            
