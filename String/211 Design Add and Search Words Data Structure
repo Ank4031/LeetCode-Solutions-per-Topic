@@ -1,0 +1,37 @@
+class WordDictionary:
+
+    def __init__(self):
+        self.wordSet = {}
+
+    def addWord(self, word: str) -> None:
+        l = len(word)
+        if l not in self.wordSet:
+            self.wordSet[l] = [word]
+        else:
+            self.wordSet[l].append(word)
+
+    def search(self, word: str) -> bool:
+        l = len(word)
+        if l in self.wordSet:
+            for i in self.wordSet[l]:
+                j=0
+                while j < l:
+                    if word[j] == i[j] or word[j] == ".":
+                        pass
+                    else:
+                        break
+                    j+=1
+                if j == l:
+                    return True
+            return False
+        else:
+            return False
+
+        
+
+
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
