@@ -1,0 +1,26 @@
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        if k>=n:
+            return []
+        
+        result = []
+        def get(lis,t,s):
+            if t == 0:
+                if s==n:
+                    result.append(lis)
+                    return
+                else:
+                    return
+            else:
+                a = lis[-1]
+                for j in range(a+1,10):
+                    x = lis.copy()
+                    x.append(j)
+                    get(x,t-1,s+j)
+                return
+        
+        for i in range(1,10):
+            get([i],k-1,i)
+        
+        print(result)
+        return result
