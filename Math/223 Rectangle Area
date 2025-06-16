@@ -1,0 +1,17 @@
+class Solution:
+    def computeArea(self, ax1: int, ay1: int, ax2: int, ay2: int, bx1: int, by1: int, bx2: int, by2: int) -> int:
+        a1 = (ax2-ax1)*(ay2-ay1)
+        b1 = (bx2-bx1)*(by2-by1)
+        setax = { i for i in range(ax1,ax2+1)}
+        setay = { i for i in range(ay1,ay2+1)}
+        setbx = { i for i in range(bx1,bx2+1)}
+        setby = { i for i in range(by1,by2+1)}
+        a = setax.intersection(setbx)
+        b = setay.intersection(setby)
+        if a and b:
+            e1 = (len(a)-1)*(len(b)-1)
+        else:
+            e1 = 0
+        if e1 > 0:
+            return a1+b1-e1
+        return a1+b1
