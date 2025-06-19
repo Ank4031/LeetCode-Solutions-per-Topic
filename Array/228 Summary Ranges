@@ -1,0 +1,31 @@
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        if not nums:
+            return []
+        start = None
+        pre = 0
+        curr = 0
+        result = []
+        i=0
+        while i < len(nums):
+            pre = curr
+            curr = nums[i]
+            if start == None:
+                start = curr
+                i+=1
+            elif (pre+1)==(curr):
+                i+=1
+            else:
+                if start == pre:
+                    result.append(f"{start}")
+                else:
+                    result.append(f"{start}->{pre}")
+                start = None
+                curr = 0
+                pre = 0
+        if start!=curr:
+            result.append(f'{start}->{curr}')
+        else:
+            result.append(f'{start}')
+        
+        return result
