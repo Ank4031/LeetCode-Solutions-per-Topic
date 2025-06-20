@@ -1,0 +1,21 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        if len(nums)<3:
+            return list(set(nums))
+        else:
+            l = len(nums)
+            limit = l//3
+            nums.sort()
+            res = []
+            s = set()
+            i=0
+            while i+limit<l:
+                if nums[i]==nums[i+limit]:
+                    if nums[i] not in s:
+                        res.append(nums[i])
+                        s.add(nums[i])
+                    i+=limit
+                else:
+                    i+=1
+            return res
+        
