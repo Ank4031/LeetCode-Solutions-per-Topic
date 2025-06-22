@@ -1,0 +1,9 @@
+import math
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        if n < 1:
+            return False
+        x = math.log2(n)
+        if int(x) == x:
+            return True
+        return False
