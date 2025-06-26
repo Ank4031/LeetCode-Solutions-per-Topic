@@ -1,0 +1,14 @@
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        if n<7:
+            return n
+        l7 = []
+        for i in range(31):
+            for j in range(20):
+                for k in range(15):
+                    l7.append((2**i)*(3**j)*(5**k))
+        
+        l7.sort()
+        return l7[n-1]
+        
+         
