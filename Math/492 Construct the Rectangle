@@ -1,0 +1,7 @@
+class Solution:
+    def constructRectangle(self, area: int) -> List[int]:
+        a = math.floor(area**(1/2))
+        while area%a != 0:
+            a-=1
+
+        return [area//a,a]
