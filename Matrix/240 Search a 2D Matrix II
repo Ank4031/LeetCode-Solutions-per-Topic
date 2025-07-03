@@ -1,0 +1,30 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        x,y=len(matrix),len(matrix[0])
+        for i in range(len(matrix)):
+            if matrix[i][0] > target:
+                x=i
+                break
+        
+        for i in range(len(matrix[0])):
+            if matrix[0][i] > target:
+                y=i
+                break
+        
+
+        print(f'x={x} and y={y}')
+        for i in range(x):
+            if matrix[i][0] <= target and matrix[i][-1] >=target:
+                l=0
+                e=y
+                while l<=e:
+                    mid = (l+e)//2
+                    if matrix[i][mid] == target:
+                        return True
+                    elif matrix[i][mid] > target:
+                        e = mid-1
+                    elif matrix[i][mid] < target:
+                        l = mid+1
+        
+        return False
+        
