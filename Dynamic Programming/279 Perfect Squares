@@ -1,0 +1,13 @@
+class Solution:
+    def numSquares(self, n: int) -> int:
+        lis = [n]* (n+1)
+        lis[0] = 0
+
+        for i in range(1,n+1):
+            for j in range(1,i+1):
+                s = j*j
+                if i - s <0:
+                    break
+                lis[i] = min(lis[i],1+lis[i-s])
+
+        return lis[n]
