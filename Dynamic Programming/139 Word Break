@@ -1,0 +1,31 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        dp={ i:True for i in range(len(s)+1)}
+        print(dp)
+        def cmb(st,x,y):
+            if y > x or not dp[y]:
+                return 0
+            if y == x:
+                if st == s:
+                    return 1
+                else:
+                    return 0
+            else:
+                for i in wordDict:
+                    if s[y:y+len(i)] == i:
+                        res = cmb(st+i,x,y+len(i))
+                        if res:
+                            return 1
+                dp[y] = False
+                return 0
+       
+        for i in wordDict:
+            if i==s[0:len(i)] and len(i)<=len(s):
+                a = cmb(i,len(s),len(i))
+                if a:
+                    return True
+        
+        return False
+
+        
+
