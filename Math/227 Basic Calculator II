@@ -1,0 +1,60 @@
+class Solution:
+    def calculate(self, s: str) -> int:
+        lis=[]
+        curr = 0
+        op = ''
+        for i in s:
+            if i == " ":
+                pass
+            elif i in "1234567890":
+                curr = curr*10 + int(i)
+            else:
+                if op == "-":
+                    lis.append(-1*curr)
+                    op = i
+                    curr = 0
+                elif op == "*":
+                    lis[-1] = lis[-1]*curr
+                    op = i
+                    curr = 0
+                elif op == "/":
+                    q = lis[-1]%curr
+                    lis[-1] = lis[-1]//curr
+                    if lis[-1]<0 and q:
+                        lis[-1]+=1
+                    op = i
+                    curr = 0
+                else:
+                    lis.append(curr)
+                    op = i
+                    curr = 0
+
+        if op == "*":
+            lis[-1] = lis[-1]*curr
+        elif op == "/":
+            q = lis[-1]%curr
+            lis[-1] = lis[-1]//curr
+            if lis[-1]<0 and q:
+                lis[-1]+=1
+        elif op == "-":
+            lis[-1] = lis[-1]-curr
+        elif op == "+":
+            lis[-1] = lis[-1]+curr
+        elif not op:
+            return int(s)
+
+        return sum(lis)
+                
+
+                
+                    
+                    
+                    
+                
+
+
+
+        
+
+
+            
