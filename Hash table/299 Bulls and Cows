@@ -1,0 +1,19 @@
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        cow = 0
+        bull = 0
+        s = list(guess)
+        p = list(secret)
+        for i in range(len(secret)-1,-1,-1):
+            if secret[i]==guess[i]:
+                bull+=1
+                p.pop(i)
+                s.pop(i)
+
+        for i in range(len(p)):
+            if p[i] in s:
+                cow+=1
+                s.remove(p[i])
+
+        return str(bull)+"A"+str(cow)+"B"
+        
