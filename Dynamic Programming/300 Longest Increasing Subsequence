@@ -1,0 +1,20 @@
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        self.res = 0 
+        d = {}
+        def get(n,idx,c):
+            if idx == len(nums)-1:
+                d[idx] = c
+                self.res = c if c>self.res else self.res
+            else:
+                m = c
+                for j in range(idx+1,len(nums)):
+                    if nums[j]>n:
+                        m = c+d[j] if c+d[j]>m else m
+                d[idx] = m
+                self.res = m if m>self.res else self.res
+
+        for i in range(len(nums)-1,-1,-1):
+            get(nums[i],i,1)
+        
+        return self.res
