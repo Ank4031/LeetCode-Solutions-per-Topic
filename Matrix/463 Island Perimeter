@@ -1,0 +1,44 @@
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        def get(a,b):
+            grid[a][b]=2
+            x = 0
+            if a+1<len(grid):
+                if grid[a+1][b]==1:
+                    x+= get(a+1,b)
+                elif grid[a+1][b]==0:
+                    x+=1
+            else:
+                x+=1
+            
+            if b+1<len(grid[0]):
+                if grid[a][b+1]==1:
+                    x+= get(a,b+1)
+                elif grid[a][b+1]==0:
+                    x+=1
+            else:
+                x+=1
+
+            if a-1>=0:
+                if grid[a-1][b]==1:
+                    x+= get(a-1,b)
+                elif grid[a-1][b]==0:
+                    x+=1
+            else:
+                x+=1
+
+            if b-1>=0:
+                if grid[a][b-1]==1:
+                    x+= get(a,b-1)
+                elif grid[a][b-1]==0:
+                    x+=1
+            else:
+                x+=1
+            
+            return x
+        
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 1:
+                    return get(i,j)
+                    break
