@@ -1,0 +1,19 @@
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        stc = []
+        arr = [-1]*len(nums)
+        i = 0
+        while i<2*len(nums):
+            if not stc:
+                stc.append(i)
+            else:
+                while stc and  nums[i%len(nums)]>nums[stc[-1]]:
+                    x = stc.pop()
+                    arr[x] = nums[i%len(nums)]
+                stc.append(i%len(nums))
+            i+=1
+            
+        return arr
+        
+
+
