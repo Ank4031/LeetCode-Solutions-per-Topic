@@ -1,0 +1,13 @@
+class Solution:
+    def findWords(self, words: List[str]) -> List[str]:
+        res= []
+        r1 = set("qwertyuiop")
+        r2 = set("asdfghjkl")
+        r3 = set("zxcvbnm")
+        for i in words:
+            k = set(i.lower())
+            print(k)
+            if k <= r1 or k <= r2 or k <= r3:
+                res.append(i)
+        return res
+        
