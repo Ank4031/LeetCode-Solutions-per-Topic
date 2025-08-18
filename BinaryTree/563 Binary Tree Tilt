@@ -1,0 +1,37 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTilt(self, root: Optional[TreeNode]) -> int:
+        self.res = 0
+        def make(rt):
+            if not rt:
+                return 0
+            if rt:
+                x = make(rt.left)
+                y = make(rt.right)
+                rt.val = rt.val+x+y
+                return rt.val
+        
+        def ans(rt):
+            if rt:
+                x,y = 0,0
+                if rt.left:
+                    x = rt.left.val
+                if rt.right:
+                    y = rt.right.val
+                self.res += abs(x-y)
+                ans(rt.left)
+                ans(rt.right)
+        
+        make(root)
+        ans(root)
+        print(f'final = {self.res}')
+        return self.res
+
+        
+
+        
