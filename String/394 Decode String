@@ -1,0 +1,26 @@
+import string
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stc = []
+        num = ''
+        for i in s:
+            if i == ']':
+                empstr = ""
+                while not(stc[-1].isnumeric()) :
+                    empstr = stc.pop() + empstr
+                stc[-1] = int(stc[-1])*empstr
+            elif i == '[':
+                if num:
+                    stc.append(num)
+                    num = ''
+            else:
+                if i in "0123456789":
+                    num+=i
+                else:
+                    if num:
+                        stc.append(num)
+                        num = ''
+                    stc.append(i)
+        
+        return "".join(stc)
+
