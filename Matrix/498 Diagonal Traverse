@@ -1,0 +1,38 @@
+class Solution:
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        top,buttom = [0,0],[0,0]
+        r = len(mat)
+        c = len(mat[0])
+        tr = 0
+        tc = 0
+        br = 0
+        bc = 0
+        con = False
+        res = []
+        while tr != r and tc != c and br != r and bc != c:
+            if con:
+                i,j = tr,tc
+                while i < r and j > -1:
+                    res.append(mat[i][j])
+                    i+=1
+                    j-=1
+            else:
+                i,j = br,bc
+                while i > -1 and j < c:
+                    res.append(mat[i][j])
+                    i-=1
+                    j+=1
+            con = not con
+            if tc != (c-1):
+                tc+=1
+            else:
+                tr+=1
+            
+            if br != (r-1):
+                br+=1
+            else:
+                bc+=1
+                
+        return res
+
+
