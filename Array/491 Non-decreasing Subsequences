@@ -1,0 +1,20 @@
+class Solution:
+    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        s = set()
+        def get(lis,resLis):
+            if len(lis)>=2:
+                if str(lis) in s:
+                    pass
+                else: 
+                    res.append(lis)
+                    s.add(str(lis))
+            if len(resLis)>0:
+                for j in range(len(resLis)):
+                    if lis[-1]<=resLis[j]:
+                        get(lis+[resLis[j]],resLis[j+1:])
+        
+        for i in range(len(nums)-1):
+            get([nums[i]],nums[i+1:])
+        
+        return res
