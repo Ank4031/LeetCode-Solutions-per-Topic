@@ -1,0 +1,18 @@
+class Solution:
+    def hasAlternatingBits(self, n: int) -> bool:
+        s = 0
+        p = 0
+        for i in range(0,32):
+            if i%2:
+                s = s+2**i
+                if s == n:
+                    return True
+                elif s>n:
+                    return False
+            else:
+                p = p+2**i
+                if p == n:
+                    return True
+                elif p>n:
+                    return False
+        
